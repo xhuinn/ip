@@ -5,35 +5,35 @@
         How can I help you?
         ---------------------------------------------
         ---------------------------------------------
-        added this task!
+        Added this task!
         read book
-        currently there's 1 tasks in your list!
+        Currently there's 1 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
-        added this task!
+        Added this task!
         return book
-        currently there's 2 tasks in your list!
+        Currently there's 2 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Here are the tasks in your list:
         1.[ ][ ] read book
         2.[ ][ ] return book
-        currently there's 2 tasks in your list!
+        Currently there's 2 tasks in your list!
         ---------------------------------------------
-        added this task!
+        Added this task!
         [T][ ] borrow book
-        currently there's 3 tasks in your list!
+        Currently there's 3 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Here are the tasks in your list:
         1.[ ][ ] read book
         2.[ ][ ] return book
         3.[T][ ] borrow book
-        currently there's 3 tasks in your list!
+        Currently there's 3 tasks in your list!
         ---------------------------------------------
-        added this task!
+        Added this task!
         [D][ ] return book (by: Sunday)
-        currently there's 4 tasks in your list!
+        Currently there's 4 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Here are the tasks in your list:
@@ -41,11 +41,11 @@
         2.[ ][ ] return book
         3.[T][ ] borrow book
         4.[D][ ] return book (by: Sunday)
-        currently there's 4 tasks in your list!
+        Currently there's 4 tasks in your list!
         ---------------------------------------------
-        added this task!
+        Added this task!
         [E][ ] project meeting (from: Mon 2pm to: 4pm)
-        currently there's 5 tasks in your list!
+        Currently there's 5 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Here are the tasks in your list:
@@ -54,7 +54,7 @@
         3.[T][ ] borrow book
         4.[D][ ] return book (by: Sunday)
         5.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-        currently there's 5 tasks in your list!
+        Currently there's 5 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Marked as done:
@@ -67,7 +67,7 @@
         3.[T][ ] borrow book
         4.[D][ ] return book (by: Sunday)
         5.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-        currently there's 5 tasks in your list!
+        Currently there's 5 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Marked as not done yet:
@@ -80,7 +80,7 @@
         3.[T][ ] borrow book
         4.[D][ ] return book (by: Sunday)
         5.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-        currently there's 5 tasks in your list!
+        Currently there's 5 tasks in your list!
         ---------------------------------------------
         ---------------------------------------------
         Bye! Hope you had a meow-tastic time
