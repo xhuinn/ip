@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Uiai {
 
-    public static final String DIVIDER = "\t♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡";
+    public static final String DIVIDER = "\t---------------------------------------------";
     public static final String LOGO = "\t /\\_/\\\n"
             + "\t( o.o )\n"
             + "\t > ^ <";
@@ -25,23 +25,23 @@ public class Uiai {
 
             switch (command[0]) {
             case "bye":
-                System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time ฅ^•⩊•^ฅ \n" + DIVIDER);
+                System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time \n" + DIVIDER);
                 task = false;
                 break;
 
             case "list":
-                System.out.println(DIVIDER + "\n\tᨐฅ Here are the tasks in your list:");
+                System.out.println(DIVIDER + "\n\tHere are the tasks in your list:");
                 for (int i = 0; i < tasksIndex; i++) {
                     System.out.println("\t" + (i + 1) + "." + tasks[i].toString());
                 }
-                System.out.println("\tcurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
+                System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
                 break;
 
             case "mark":
                 try {
                     int markIndex = Integer.parseInt(command[1]) - 1;
                     tasks[markIndex].markAsDone();
-                    System.out.println(DIVIDER + "\n\t≽^-⩊-^≼ Marked as done:");
+                    System.out.println(DIVIDER + "\n\tMarked as done:");
                     System.out.println("\t"  + tasks[markIndex].toString());
                     System.out.println(DIVIDER);
                 } catch (Exception e) {
@@ -53,7 +53,7 @@ public class Uiai {
                 try {
                     int unmarkIndex = Integer.parseInt(command[1]) - 1;
                     tasks[unmarkIndex].markAsNotDone();
-                    System.out.println(DIVIDER + "\n\t≽^-⩊-^≼ Marked as not done yet:");
+                    System.out.println(DIVIDER + "\n\tMarked as not done yet:");
                     System.out.println("\t"  + tasks[unmarkIndex].toString());
                     System.out.println(DIVIDER);
                 } catch (Exception e) {
@@ -65,9 +65,9 @@ public class Uiai {
                 try {
                     String[] description = command[1].split("/by ", 2);
                     tasks[tasksIndex] = new Deadline(description[0], description[1] );
-                    System.out.println("\tᓚ₍ ^. .^₎ added this task!");
+                    System.out.println("\tAdded this task!");
                     System.out.println("\t" + tasks[tasksIndex].toString());
-                    System.out.println("\tcurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+                    System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
                     tasksIndex++;
                 } catch (Exception e) {
                     System.out.println("\tNo Deadline found.");
@@ -78,9 +78,9 @@ public class Uiai {
                 try {
                     String description = command[1];
                     tasks[tasksIndex] = new Todo(description);
-                    System.out.println("\tᓚ₍ ^. .^₎ added this task!");
+                    System.out.println("\tAdded this task!");
                     System.out.println("\t" + tasks[tasksIndex].toString());
-                    System.out.println("\tcurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+                    System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
                     tasksIndex++;
                 } catch (Exception e) {
                     System.out.println("\tNo Todo found");
@@ -92,9 +92,9 @@ public class Uiai {
                     String[] description = command[1].split("/from", 2);
                     String[] time = description[1].split("/to", 2);
                     tasks[tasksIndex] = new Event(description[0], time[0], time[1]);
-                    System.out.println("\tᓚ₍ ^. .^₎ added this task!");
+                    System.out.println("\tAdded this task!");
                     System.out.println("\t" + tasks[tasksIndex].toString());
-                    System.out.println("\tcurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+                    System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
                     tasksIndex++;
                 } catch (Exception e) {
                     System.out.println("\tNo Event found.");
@@ -102,7 +102,7 @@ public class Uiai {
                 break;
 
             default:
-                System.out.println(DIVIDER + "\n\t" + "ᓚ₍ ^. .^₎ added this task!\n\t " + line + "\n\t" + "currently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+                System.out.println(DIVIDER + "\n\t" + "Added this task!\n\t" + line + "\n\t" + "Currently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
                 tasks[tasksIndex] = new Task(line);
                 tasksIndex++;
                 break;
