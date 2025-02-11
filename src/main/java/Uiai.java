@@ -6,7 +6,7 @@ public class Uiai {
             + "\t( o.o )\n"
             + "\t > ^ <";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UiaiException {
         System.out.println("\t Meow! I'm Uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
 
@@ -40,9 +40,9 @@ public class Uiai {
 
             case "unmark":
                 try {
-                    commandUnmark(command, tasks);
-                } catch (Exception e) {
-                    System.out.println("\tInvalid task number.");
+                    commandUnmark(command, tasks, tasksIndex);
+                } catch (UiaiException e) {
+                    System.out.println("\t" + e.getMessage());
                 }
                 break;
 
@@ -71,14 +71,18 @@ public class Uiai {
                 break;
 
             default:
-                tasksIndex = commandDefault(line, tasksIndex, tasks);
-                break;
+                try {
+                    throw UiaiException.noCommand();
+                } catch (UiaiException e) {
+                    System.out.println("\t" + e.getMessage());
+                }
+
             }
         }
     }
 
     private static void commandBye() {
-        System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time \n" + DIVIDER);
+        System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time\n" + DIVIDER);
     }
 
     private static void commandList(int tasksIndex, Task[] tasks) {
@@ -89,16 +93,26 @@ public class Uiai {
         System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
     }
 
-    private static void commandMark(String[] command, Task[] tasks) {
-        int markIndex = Integer.parseInt(command[1]) - 1;
-        tasks[markIndex].markAsDone();
-        System.out.println(DIVIDER + "\n\tMarked as done:");
-        System.out.println("\t" + tasks[markIndex].toString());
-        System.out.println(DIVIDER);
+    private static void commandMark(String[] command, Task[] tasks) throws UiaiException {
+        try {
+            int markIndex = Integer.parseInt(command[1]) - 1;
+            tasks[markIndex].markAsDone();
+            System.out.println(DIVIDER + "\n\tMarked as done:");
+            System.out.println("\t" + tasks[markIndex].toString());
+            System.out.println(DIVIDER);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new UiaiException("Invalid task number");
+        }
     }
 
-    private static void commandUnmark(String[] command, Task[] tasks) {
+    private static void commandUnmark(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
         int unmarkIndex = Integer.parseInt(command[1]) - 1;
+
+        // if index is out of bounds
+        if (unmarkIndex < 0 || unmarkIndex >= tasksIndex || tasks[unmarkIndex] == null) {
+            throw UiaiException.invalidTaskNumber(tasksIndex);
+        }
+
         if (tasks[unmarkIndex].isDone) {
             tasks[unmarkIndex].markAsNotDone();
             System.out.println(DIVIDER + "\n\tMarked as not done yet:");
