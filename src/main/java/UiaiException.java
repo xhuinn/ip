@@ -7,8 +7,24 @@ public class UiaiException extends Exception {
         return new UiaiException("Invalid task number. Total tasks: " + maxTasks);
     }
 
-    public static UiaiException noCommand() {
-        return new UiaiException("Meow? I don't understand... Please enter a command.");
+    public static UiaiException incorrectFormat() {
+        return new UiaiException("Meow? I don't understand... Please enter in correct format.");
+    }
+
+    public static UiaiException invalidTask() {
+        return new UiaiException("Meow! There's no task!");
+    }
+
+    public static UiaiException markedTask() {
+        return new UiaiException("Another task! It's already marked...");
+    }
+
+    public static UiaiException unmarkedTask() {
+        return new UiaiException("Another task! It's already unmarked...");
+    }
+
+    public static UiaiException noDeadline() {
+        return new UiaiException("Meow? Did you forget about the deadline?");
     }
 
 }
