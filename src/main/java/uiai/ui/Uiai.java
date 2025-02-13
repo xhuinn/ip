@@ -1,5 +1,13 @@
+package uiai.ui;
+
 import java.util.Objects;
 import java.util.Scanner;
+
+import uiai.command.Deadline;
+import uiai.command.Event;
+import uiai.command.Todo;
+import uiai.task.Task;
+import uiai.exception.UiaiException;
 
 public class Uiai {
     public static final String DIVIDER = "\t---------------------------------------------";
@@ -8,7 +16,7 @@ public class Uiai {
             + "\t > ^ <";
 
     public static void main(String[] args) throws UiaiException {
-        System.out.println("\t Meow! I'm Uiai, your helpful cat\n" + LOGO);
+        System.out.println("\t Meow! I'm uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
 
         Task[] tasks = new Task[100];
@@ -111,7 +119,7 @@ public class Uiai {
         }
 
         // if task is marked already
-        if (tasks[markIndex].isDone) {
+        if (tasks[markIndex].isDone()) {
             throw UiaiException.markedTask();
         }
 
@@ -131,7 +139,7 @@ public class Uiai {
         }
 
         // if task is unmarked already
-        if (!tasks[unmarkIndex].isDone) {
+        if (!tasks[unmarkIndex].isDone()) {
             throw UiaiException.unmarkedTask();
         }
 

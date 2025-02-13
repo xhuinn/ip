@@ -1,3 +1,7 @@
+package uiai.command;
+
+import uiai.task.Task;
+
 public class Todo extends Task {
 
     public Todo(String description) {
