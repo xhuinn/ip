@@ -76,12 +76,12 @@ public class Uiai {
                     }
                     break;
 
-//                default:
-//                    try {
-//                        throw UiaiException.noCommand();
-//                    } catch (UiaiException e) {
-//                        System.out.println("\t" + e.getMessage());
-//                    }
+                default:
+                    try {
+                        throw UiaiException.incorrectFormat();
+                    } catch (UiaiException e) {
+                        System.out.println("\t" + e.getMessage());
+                    }
 
                 }
             } catch (UiaiException e) {
@@ -146,7 +146,7 @@ public class Uiai {
         String[] description = command[1].split("/by ", 2);
 
         if (description.length != 2) {
-            throw UiaiException.noDeadline();
+            throw UiaiException.incorrectDeadlineFormat();
         }
 
         tasks[tasksIndex] = new Deadline(description[0], description[1]);
@@ -159,7 +159,6 @@ public class Uiai {
 
     private static int commandTodo(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
 
-
         String description = command[1];
         tasks[tasksIndex] = new Todo(description);
         System.out.println("\tAdded this task!");
@@ -170,12 +169,23 @@ public class Uiai {
     }
 
     private static int commandEvent(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
-        if (command[1] == null) {
-            throw UiaiException.invalidTask();
+        if (command[1] == null || command[1].isBlank()) {
+            throw UiaiException.incorrectEventFormat();
         }
 
         String[] description = command[1].split("/from", 2);
+
+        // check if /from part is present
+        if (description.length != 2 || description[0].isBlank() || description[1].isBlank()) {
+            throw UiaiException.incorrectEventFormat();
+        }
+
         String[] time = description[1].split("/to", 2);
+
+        // check if /to part is present
+        if (time.length != 2 || time[0].isBlank() || time[1].isBlank()) {
+            throw UiaiException.incorrectEventFormat();
+        }
 
         tasks[tasksIndex] = new Event(description[0], time[0], time[1]);
         System.out.println("\tAdded this task!");

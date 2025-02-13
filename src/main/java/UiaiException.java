@@ -23,8 +23,12 @@ public class UiaiException extends Exception {
         return new UiaiException("Another task! It's already unmarked...");
     }
 
-    public static UiaiException noDeadline() {
-        return new UiaiException("Meow? Did you forget about the deadline?");
+    public static UiaiException incorrectDeadlineFormat() {
+        return new UiaiException("Meow? Please input in this format: deadline [task] /by [date,time]");
+    }
+
+    public static UiaiException incorrectEventFormat() {
+        return new UiaiException("Meow? Please input in this format: event [task] /from [date,time] /to [date,time]");
     }
 
 }
