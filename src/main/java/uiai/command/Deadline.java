@@ -1,3 +1,7 @@
+package uiai.command;
+
+import uiai.task.Task;
+
 public class Deadline extends Task {
 
     protected String by;

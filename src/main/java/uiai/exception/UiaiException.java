@@ -1,3 +1,5 @@
+package uiai.exception;
+
 public class UiaiException extends Exception {
     public UiaiException(String message) {
         super(message);
