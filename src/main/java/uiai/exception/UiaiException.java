@@ -13,10 +13,6 @@ public class UiaiException extends Exception {
         return new UiaiException("Meow? I don't understand... Please enter in correct format.");
     }
 
-    public static UiaiException invalidTask() {
-        return new UiaiException("Meow! There's no task!");
-    }
-
     public static UiaiException markedTask() {
         return new UiaiException("Another task! It's already marked...");
     }

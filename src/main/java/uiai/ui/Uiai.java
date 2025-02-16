@@ -1,5 +1,6 @@
 package uiai.ui;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -19,7 +20,8 @@ public class Uiai {
         System.out.println("\t Meow! I'm uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
 
-        Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<Task>();
+//        Task[] tasks = new Task[100];
         int tasksIndex = 0;
 
         Scanner in = new Scanner(System.in);
@@ -84,6 +86,14 @@ public class Uiai {
                     }
                     break;
 
+                case "delete":
+                    try {
+                        tasksIndex = commandDelete(command, tasks, tasksIndex);
+                    } catch (UiaiException e) {
+                        System.out.println("\t" + e.getMessage());
+                    }
+                    break;
+
                 default:
                     try {
                         throw UiaiException.incorrectFormat();
@@ -102,81 +112,80 @@ public class Uiai {
         System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time\n" + DIVIDER);
     }
 
-    private static void commandList(int tasksIndex, Task[] tasks) {
+    private static void commandList(int tasksIndex, ArrayList<Task> tasks) {
         System.out.println(DIVIDER + "\n\tHere are the tasks in your list:");
         for (int i = 0; i < tasksIndex; i++) {
-            System.out.println("\t" + (i + 1) + "." + tasks[i].toString());
+            System.out.println("\t" + (i + 1) + "." + tasks.get(i).toString());
         }
         System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
     }
 
-    private static void commandMark(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
+    private static void commandMark(String[] command, ArrayList<Task>tasks, int tasksIndex) throws UiaiException {
         int markIndex = Integer.parseInt(command[1]) - 1;
 
         // if index is out of bounds
-        if (markIndex < 0 || markIndex >= tasksIndex || tasks[markIndex] == null) {
+        if (markIndex < 0 || markIndex >= tasksIndex || tasks.get(markIndex) == null) {
             throw UiaiException.invalidTaskNumber(tasksIndex);
         }
 
         // if task is marked already
-        if (tasks[markIndex].isDone()) {
+        if (tasks.get(markIndex).isDone()) {
             throw UiaiException.markedTask();
         }
 
-        tasks[markIndex].markAsDone();
+        tasks.get(markIndex).markAsDone();
         System.out.println(DIVIDER + "\n\tMarked as done:");
-        System.out.println("\t" + tasks[markIndex].toString());
+        System.out.println("\t" + tasks.get(markIndex).toString());
         System.out.println(DIVIDER);
     }
 
 
-    private static void commandUnmark(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
+    private static void commandUnmark(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
         int unmarkIndex = Integer.parseInt(command[1]) - 1;
 
         // if index is out of bounds
-        if (unmarkIndex < 0 || unmarkIndex >= tasksIndex || tasks[unmarkIndex] == null) {
+        if (unmarkIndex < 0 || unmarkIndex >= tasksIndex || tasks.get(unmarkIndex) == null) {
             throw UiaiException.invalidTaskNumber(tasksIndex);
         }
 
         // if task is unmarked already
-        if (!tasks[unmarkIndex].isDone()) {
+        if (!tasks.get(unmarkIndex).isDone()) {
             throw UiaiException.unmarkedTask();
         }
 
-        tasks[unmarkIndex].markAsNotDone();
+        tasks.get(unmarkIndex).markAsNotDone();
         System.out.println(DIVIDER + "\n\tMarked as not done yet:");
-        System.out.println("\t" + tasks[unmarkIndex].toString());
+        System.out.println("\t" + tasks.get(unmarkIndex).toString());
         System.out.println(DIVIDER);
     }
 
 
-    private static int commandDeadline(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
+    private static int commandDeadline(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
         String[] description = command[1].split("/by ", 2);
 
         if (description.length != 2) {
             throw UiaiException.incorrectDeadlineFormat();
         }
 
-        tasks[tasksIndex] = new Deadline(description[0], description[1]);
+        tasks.add(new Deadline(description[0], description[1]));
         System.out.println("\tAdded this task!");
-        System.out.println("\t" + tasks[tasksIndex].toString());
+        System.out.println("\t" + tasks.get(tasksIndex).toString());
         System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
         tasksIndex++;
         return tasksIndex;
     }
 
-    private static int commandTodo(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
-
+    private static int commandTodo(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
         String description = command[1];
-        tasks[tasksIndex] = new Todo(description);
+        tasks.add(new Todo(description));
         System.out.println("\tAdded this task!");
-        System.out.println("\t" + tasks[tasksIndex].toString());
+        System.out.println("\t" + tasks.get(tasksIndex).toString());
         System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
         tasksIndex++;
         return tasksIndex;
     }
 
-    private static int commandEvent(String[] command, Task[] tasks, int tasksIndex) throws UiaiException {
+    private static int commandEvent(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
         if (command[1] == null || command[1].isBlank()) {
             throw UiaiException.incorrectEventFormat();
         }
@@ -195,18 +204,27 @@ public class Uiai {
             throw UiaiException.incorrectEventFormat();
         }
 
-        tasks[tasksIndex] = new Event(description[0], time[0], time[1]);
+        tasks.add(new Event(description[0], time[0], time[1]));
         System.out.println("\tAdded this task!");
-        System.out.println("\t" + tasks[tasksIndex].toString());
+        System.out.println("\t" + tasks.get(tasksIndex).toString());
         System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
         tasksIndex++;
         return tasksIndex;
     }
 
-    private static int commandDefault(String line, int tasksIndex, Task[] tasks) {
-        System.out.println(DIVIDER + "\n\t" + "Added this task!\n\t" + line + "\n\t" + "Currently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
-        tasks[tasksIndex] = new Task(line);
-        tasksIndex++;
+    private static int commandDelete(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
+        int deleteTaskIndex = Integer.parseInt(command[1]) - 1;
+
+        if (deleteTaskIndex < 0 || deleteTaskIndex >= tasksIndex) {
+            throw UiaiException.invalidTaskNumber(tasksIndex);
+        }
+
+        System.out.println(DIVIDER + "\n\tMeow! I've removed this task:");
+        System.out.println("\t" + tasks.get(deleteTaskIndex).toString());
+        tasks.remove(deleteTaskIndex);
+        tasksIndex--;
+
+        System.out.println("\tNow you have " + tasksIndex + " tasks in your list.\n" + DIVIDER);
         return tasksIndex;
     }
 }
