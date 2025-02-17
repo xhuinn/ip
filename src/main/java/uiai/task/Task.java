@@ -1,8 +1,12 @@
 package uiai.task;
 
+import java.util.Date;
+
 public class Task {
-    protected String description;
+    public String description;
     protected boolean isDone;
+    public String toDate;
+    public String fromDate;
 
     public Task(String description) {
         this.description = description;

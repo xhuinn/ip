@@ -10,13 +10,12 @@ import uiai.command.Deadline;
 import uiai.command.Event;
 import uiai.task.Task;
 
-public class TaskLoader {
+public class TasksLoader {
     public static ArrayList<Task> loadTasks(String filePath) throws FileNotFoundException {
-        ArrayList<Task> tasks = new ArrayList<>();
-
         File file = new File(filePath);
+        ArrayList<Task> tasks = new ArrayList<>();
         if (!file.exists()) {
-            return tasks; // Return an empty list if the file doesn't exist
+            return tasks;
         }
 
         Scanner scanner = new Scanner(file);
@@ -24,31 +23,49 @@ public class TaskLoader {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] taskData = line.split(" \\| ");
+
+            if (taskData.length < 3) {
+                System.out.println("Invalid task format: " + line);
+                continue;
+            }
+
             Task task = null;
 
             switch (taskData[0]) {
-            case "T":
-                task = new Todo(taskData[2]);
+            case "T": // Todo
+                if (taskData.length == 3) {
+                    task = new Todo(taskData[2]);
+                }
                 break;
-            case "D":
-                task = new Deadline(taskData[2], taskData[3]);
-                break;
-            case "E":
-                task = new Event(taskData[2], taskData[3], taskData[4]);
-                break;
-            }
 
-            if (task != null && taskData[1].equals("1")) {
-                task.markAsDone();
+            case "D": // Deadline
+                if (taskData.length == 4) {
+                    task = new Deadline(taskData[2], taskData[3]);
+                }
+                break;
+
+            case "E": // Event
+                if (taskData.length == 5) {
+                    task = new Event(taskData[2], taskData[3], taskData[4]);
+                }
+                break;
+
+            default:
+                System.out.println("Unknown task type: " + taskData[0]);
+                break;
             }
 
             if (task != null) {
-                tasks.add(task); // Add the task to the ArrayList
+                if ("1".equals(taskData[1])) {
+                    task.markAsDone();
+                }
+                tasks.add(task);
+            } else {
+                System.out.println("Invalid task data: " + line);
             }
         }
 
         scanner.close();
-
         return tasks;
     }
 }

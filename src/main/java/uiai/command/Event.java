@@ -13,8 +13,19 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public void getByDate() {}
+
+
     @Override
     public String toString() {
-        return "[E]" + "[" + getStatusIcon() + "] " + description + "(from:" + from + "to:" + to + ")";
+        return "[E]" + "[" + getStatusIcon() + "] " + description + "(from: " + from + " to: " + to + ")";
+    }
+
+    public String getFromDate() {
+        return from;
+    }
+
+    public String getToDate() {
+        return to;
     }
 }
