@@ -19,11 +19,12 @@ public class Uiai {
     public static final String LOGO = "\t /\\_/\\\n"
             + "\t( o.o )\n"
             + "\t > ^ <";
-    private static final String FILE_PATH = "ip/src/main/java/uiai/data/uiai.txt";
+    private static final String FILE_PATH = "../../../ip/src/main/java/uiai/data/uiai.txt";
 
     public static void main(String[] args) {
         System.out.println("\t Meow! I'm uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
+        //byeSystem.out.println("Working Directory: " + System.getProperty("user.dir"));
 
         ArrayList<Task> tasks = new ArrayList<>();
 
