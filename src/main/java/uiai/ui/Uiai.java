@@ -268,8 +268,6 @@ public class Uiai {
     private static void saveTasksToFile(ArrayList<Task> tasks) {
         try {
             TasksSaver.saveTasks(FILE_PATH, tasks);
-//        } catch (UiaiException e) {
-//            System.out.println("\tFailed to save tasks: " + e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

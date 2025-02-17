@@ -13,9 +13,6 @@ public class Event extends Task {
         this.to = to;
     }
 
-    public void getByDate() {}
-
-
     @Override
     public String toString() {
         return "[E]" + "[" + getStatusIcon() + "] " + description + "(from: " + from + " to: " + to + ")";
