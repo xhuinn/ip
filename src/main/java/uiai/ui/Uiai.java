@@ -1,31 +1,46 @@
 package uiai.ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 import uiai.command.Deadline;
 import uiai.command.Event;
 import uiai.command.Todo;
 import uiai.task.Task;
 import uiai.exception.UiaiException;
+import uiai.file.TasksLoader;
+import uiai.file.TasksSaver;
 
 public class Uiai {
     public static final String DIVIDER = "\t---------------------------------------------";
     public static final String LOGO = "\t /\\_/\\\n"
             + "\t( o.o )\n"
             + "\t > ^ <";
+    private static final String FILE_PATH = "ip/src/main/java/uiai/data/uiai.txt";
 
-    public static void main(String[] args) throws UiaiException {
+    public static void main(String[] args) {
         System.out.println("\t Meow! I'm uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
 
-        ArrayList<Task> tasks = new ArrayList<Task>();
-//        Task[] tasks = new Task[100];
-        int tasksIndex = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        // load tasks from txt file
+        try {
+            tasks = TasksLoader.loadTasks(FILE_PATH);
+            System.out.println("Loaded tasks:");
+            for (Task task : tasks) {
+                System.out.println(task);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + FILE_PATH);
+        }
 
         Scanner in = new Scanner(System.in);
         boolean task = true;
+        int tasksIndex = tasks.size();
 
         while (task) {
             try {
@@ -39,6 +54,7 @@ public class Uiai {
                 switch (command[0]) {
                 case "bye":
                     commandBye();
+                    saveTasksToFile(tasks);
                     task = false;
                     break;
 
@@ -117,10 +133,14 @@ public class Uiai {
         for (int i = 0; i < tasksIndex; i++) {
             System.out.println("\t" + (i + 1) + "." + tasks.get(i).toString());
         }
-        System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
+        if (tasksIndex == 1) {
+            System.out.println("\tCurrently there's 1 task in your list!");
+        } else {
+            System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
+        }
     }
 
-    private static void commandMark(String[] command, ArrayList<Task>tasks, int tasksIndex) throws UiaiException {
+    private static void commandMark(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
         int markIndex = Integer.parseInt(command[1]) - 1;
 
         // if index is out of bounds
@@ -170,7 +190,12 @@ public class Uiai {
         tasks.add(new Deadline(description[0], description[1]));
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
-        System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+
+        if (tasksIndex + 1 == 1) {
+            System.out.println("\tCurrently there's 1 task in your list!");
+        } else {
+            System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+        }
         tasksIndex++;
         return tasksIndex;
     }
@@ -180,7 +205,13 @@ public class Uiai {
         tasks.add(new Todo(description));
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
-        System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+
+        if (tasksIndex + 1 == 1) {
+            System.out.println("\tCurrently there's 1 task in your list!");
+        } else {
+            System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+        }
+
         tasksIndex++;
         return tasksIndex;
     }
@@ -207,7 +238,13 @@ public class Uiai {
         tasks.add(new Event(description[0], time[0], time[1]));
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
-        System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+
+        if (tasksIndex + 1 == 1) {
+            System.out.println("\tCurrently there's 1 task in your list!");
+        } else {
+            System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
+        }
+
         tasksIndex++;
         return tasksIndex;
     }
@@ -226,5 +263,15 @@ public class Uiai {
 
         System.out.println("\tNow you have " + tasksIndex + " tasks in your list.\n" + DIVIDER);
         return tasksIndex;
+    }
+
+    private static void saveTasksToFile(ArrayList<Task> tasks) {
+        try {
+            TasksSaver.saveTasks(FILE_PATH, tasks);
+//        } catch (UiaiException e) {
+//            System.out.println("\tFailed to save tasks: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
