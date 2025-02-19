@@ -28,5 +28,4 @@ public class UiaiException extends Exception {
     public static UiaiException incorrectEventFormat() {
         return new UiaiException("Meow? Please input in this format: event [task] /from [date,time] /to [date,time]");
     }
-
 }

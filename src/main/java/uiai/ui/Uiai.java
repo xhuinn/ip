@@ -1,6 +1,7 @@
 package uiai.ui;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -19,25 +20,14 @@ public class Uiai {
     public static final String LOGO = "\t /\\_/\\\n"
             + "\t( o.o )\n"
             + "\t > ^ <";
-    private static final String FILE_PATH = "../../../ip/src/main/java/uiai/data/uiai.txt";
+    private static final String FILE_PATH = String.valueOf(Paths.get(System.getProperty("user.dir"), "uiai.txt"));
 
     public static void main(String[] args) {
         System.out.println("\t Meow! I'm uiai, your helpful cat\n" + LOGO);
         System.out.println("\tHow can I help you?\n" + DIVIDER);
-        //byeSystem.out.println("Working Directory: " + System.getProperty("user.dir"));
 
         ArrayList<Task> tasks = new ArrayList<>();
-
-        // load tasks from txt file
-        try {
-            tasks = TasksLoader.loadTasks(FILE_PATH);
-            System.out.println("Loaded tasks:");
-            for (Task task : tasks) {
-                System.out.println(task);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + FILE_PATH);
-        }
+        tasks = getTasks(tasks);
 
         Scanner in = new Scanner(System.in);
         boolean task = true;
@@ -125,6 +115,20 @@ public class Uiai {
         }
     }
 
+    private static ArrayList<Task> getTasks(ArrayList<Task> tasks) {
+        try {
+            tasks = TasksLoader.loadTasks(FILE_PATH);
+
+            System.out.println("\tLoaded tasks:");
+            for (Task task : tasks) {
+                System.out.println("\t" + task);
+            }
+        } catch (IOException e) {
+            return tasks;
+        }
+        return tasks;
+    }
+
     private static void commandBye() {
         System.out.println(DIVIDER + "\n" + "\tBye! Hope you had a meow-tastic time\n" + DIVIDER);
     }
@@ -134,11 +138,7 @@ public class Uiai {
         for (int i = 0; i < tasksIndex; i++) {
             System.out.println("\t" + (i + 1) + "." + tasks.get(i).toString());
         }
-        if (tasksIndex == 1) {
-            System.out.println("\tCurrently there's 1 task in your list!");
-        } else {
-            System.out.println("\tCurrently there's " + tasksIndex + " tasks in your list!\n" + DIVIDER);
-        }
+        printTasksCount(tasksIndex - 1);
     }
 
     private static void commandMark(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
@@ -192,13 +192,17 @@ public class Uiai {
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
 
+        printTasksCount(tasksIndex);
+        tasksIndex++;
+        return tasksIndex;
+    }
+
+    private static void printTasksCount(int tasksIndex) {
         if (tasksIndex + 1 == 1) {
             System.out.println("\tCurrently there's 1 task in your list!");
         } else {
             System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
         }
-        tasksIndex++;
-        return tasksIndex;
     }
 
     private static int commandTodo(String[] command, ArrayList<Task> tasks, int tasksIndex) throws UiaiException {
@@ -207,11 +211,7 @@ public class Uiai {
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
 
-        if (tasksIndex + 1 == 1) {
-            System.out.println("\tCurrently there's 1 task in your list!");
-        } else {
-            System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
-        }
+        printTasksCount(tasksIndex);
 
         tasksIndex++;
         return tasksIndex;
@@ -240,11 +240,7 @@ public class Uiai {
         System.out.println("\tAdded this task!");
         System.out.println("\t" + tasks.get(tasksIndex).toString());
 
-        if (tasksIndex + 1 == 1) {
-            System.out.println("\tCurrently there's 1 task in your list!");
-        } else {
-            System.out.println("\tCurrently there's " + (tasksIndex + 1) + " tasks in your list!\n" + DIVIDER);
-        }
+        printTasksCount(tasksIndex);
 
         tasksIndex++;
         return tasksIndex;
