@@ -1,6 +1,4 @@
-package uiai.command;
-
-import uiai.task.Task;
+package uiai.task;
 
 public class Deadline extends Task {
 
@@ -13,7 +11,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + "[" + getStatusIcon() + "] " + description + "(by: " + by + ")";
+        return "[D]" + "[" + getStatusIcon() + "] " + description + " (by: " + by + ")";
     }
 
     public String getByDate() {

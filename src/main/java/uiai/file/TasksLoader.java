@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import uiai.command.Todo;
-import uiai.command.Deadline;
-import uiai.command.Event;
+import uiai.task.Todo;
+import uiai.task.Deadline;
+import uiai.task.Event;
 import uiai.task.Task;
 
 public class TasksLoader {
@@ -65,7 +65,6 @@ public class TasksLoader {
                 }
             }
         }
-
         return tasks;
     }
 }

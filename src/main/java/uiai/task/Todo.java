@@ -1,6 +1,4 @@
-package uiai.command;
-
-import uiai.task.Task;
+package uiai.task;
 
 public class Todo extends Task {
 

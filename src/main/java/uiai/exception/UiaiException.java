@@ -25,6 +25,10 @@ public class UiaiException extends Exception {
         return new UiaiException("Meow? Please input in this format: deadline [task] /by [date,time]");
     }
 
+    public static UiaiException incorrectTodoFormat() {
+        return new UiaiException("Meow? Please input in this format: todo [task]");
+    }
+
     public static UiaiException incorrectEventFormat() {
         return new UiaiException("Meow? Please input in this format: event [task] /from [date,time] /to [date,time]");
     }

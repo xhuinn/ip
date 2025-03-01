@@ -1,4 +1,4 @@
-         Meow! I'm uiai.ui.Uiai, your helpful cat
+         Meow! I'm uiai.Uiai, your helpful cat
          /\_/\
         ( o.o )
          > ^ <

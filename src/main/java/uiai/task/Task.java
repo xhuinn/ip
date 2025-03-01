@@ -1,12 +1,8 @@
 package uiai.task;
 
-import java.util.Date;
-
 public class Task {
     public String description;
     protected boolean isDone;
-    public String toDate;
-    public String fromDate;
 
     public Task(String description) {
         this.description = description;
@@ -33,5 +29,4 @@ public class Task {
     public String toString() {
         return "[ ]" + "[" + getStatusIcon() + "] " + description;
     }
-
 }
