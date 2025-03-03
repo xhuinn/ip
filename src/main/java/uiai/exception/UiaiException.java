@@ -71,6 +71,15 @@ public class UiaiException extends Exception {
     }
 
     /**
+     * Creates an exception indicating that the find format is incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating incorrect find format.
+     */
+    public static UiaiException incorrectFindFormat() {
+        return new UiaiException("Meow? Please input in this format: find [task]");
+    }
+
+    /**
      * Creates an exception indicating that the event format is incorrect.
      *
      * @return A new {@link UiaiException} with an error message indicating incorrect event format.

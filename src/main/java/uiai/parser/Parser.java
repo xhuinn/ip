@@ -1,5 +1,6 @@
 package uiai.parser;
 
+import uiai.command.FindCommand;
 import uiai.command.*;
 import uiai.exception.UiaiException;
 
@@ -26,6 +27,7 @@ public class Parser {
      *     <li>"todo" -> TodoCommand</li>
      *     <li>"event" -> EventCommand</li>
      *     <li>"delete" -> DeleteCommand</li>
+     *     <li>"find" -> FindCommand</li>
      * </ul>
      *
      * @param fullCommand The full command entered by the user, typically consisting of a command keyword
@@ -44,6 +46,8 @@ public class Parser {
             case "todo" -> new TodoCommand(command);
             case "event" -> new EventCommand(command);
             case "delete" -> new DeleteCommand(command);
+            case "find" -> new FindCommand(command);
+
             default -> throw UiaiException.incorrectFormat();
         };
     }
