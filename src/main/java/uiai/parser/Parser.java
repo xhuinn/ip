@@ -1,5 +1,6 @@
 package uiai.parser;
 
+import uiai.command.FindCommand;
 import uiai.command.*;
 import uiai.exception.UiaiException;
 
@@ -15,6 +16,8 @@ public class Parser {
             case "todo" -> new TodoCommand(command);
             case "event" -> new EventCommand(command);
             case "delete" -> new DeleteCommand(command);
+            case "find" -> new FindCommand(command);
+
             default -> throw UiaiException.incorrectFormat();
         };
     }
