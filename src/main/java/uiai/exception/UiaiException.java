@@ -29,6 +29,10 @@ public class UiaiException extends Exception {
         return new UiaiException("Meow? Please input in this format: todo [task]");
     }
 
+    public static UiaiException incorrectFindFormat() {
+        return new UiaiException("Meow? Please input in this format: find [task]");
+    }
+
     public static UiaiException incorrectEventFormat() {
         return new UiaiException("Meow? Please input in this format: event [task] /from [date,time] /to [date,time]");
     }
