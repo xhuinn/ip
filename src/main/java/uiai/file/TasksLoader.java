@@ -3,6 +3,9 @@ package uiai.file;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import uiai.task.Todo;
 import uiai.task.Deadline;
@@ -10,11 +13,14 @@ import uiai.task.Event;
 import uiai.task.Task;
 
 public class TasksLoader {
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+
     public static ArrayList<Task> loadTasks(String filePath) throws IOException {
         File file = new File(filePath);
 
         if (!file.exists()) {
             file.getParentFile().mkdirs();
+            file.createNewFile();
         }
 
         ArrayList<Task> tasks = new ArrayList<>();
@@ -40,7 +46,12 @@ public class TasksLoader {
 
                 case "D": // Deadline
                     if (taskData.length == 4) {
-                        task = new Deadline(taskData[2], taskData[3]);
+                        try {
+                            LocalDateTime deadlineDate = LocalDateTime.parse(taskData[3], DATE_FORMAT);
+                            task = new Deadline(taskData[2], deadlineDate);
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid deadline date format: " + taskData[3]);
+                        }
                     }
                     break;
 
