@@ -12,9 +12,23 @@ import uiai.task.Deadline;
 import uiai.task.Event;
 import uiai.task.Task;
 
+/**
+ * A utility class that handles loading tasks from a file. This class reads task data
+ * from a specified file and parses the information into appropriate Task objects.
+ */
 public class TasksLoader {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 
+    /**
+     * Loads tasks from the file located at the specified file path.
+     * The tasks are parsed from each line in the file, with each task being identified
+     * by its type and attributes. If the task data is malformed or the format is incorrect,
+     * an error message will be printed, and the invalid task will be skipped.
+     *
+     * @param filePath The path to the file from which tasks will be loaded.
+     * @return An {@link ArrayList} of {@link Task} objects parsed from the file.
+     * @throws IOException If an error occurs during reading the file.
+     */
     public static ArrayList<Task> loadTasks(String filePath) throws IOException {
         File file = new File(filePath);
 

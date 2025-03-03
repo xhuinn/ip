@@ -10,13 +10,34 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a command to create a new deadline task.
+ * The deadline task consists of a description and a due date/time.
+ */
 public class DeadlineCommand extends Command {
+    /**
+     * The expected date-time format for input parsing (dd/MM/yyyy HHmm).
+     */
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 
+    /**
+     * Constructs a DeadlineCommand with the given arguments.
+     *
+     * @param commandArgs The command arguments containing the task description and deadline.
+     */
     public DeadlineCommand(String[] commandArgs) {
         this.commandArgs = commandArgs;
     }
 
+    /**
+     * Executes the deadline command by parsing the input, creating a Deadline task,
+     * and adding it to the task list.
+     *
+     * @param tasks   The task list where the new deadline task will be added.
+     * @param ui      The user interface for displaying messages.
+     * @param storage The storage handler for saving/loading tasks.
+     * @throws UiaiException If the command format is incorrect or the date-time format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
         if (commandArgs.length < 2 || commandArgs[1].isBlank()) {

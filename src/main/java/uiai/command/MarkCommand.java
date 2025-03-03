@@ -5,8 +5,20 @@ import uiai.file.Storage;
 import uiai.ui.Ui;
 import uiai.exception.UiaiException;
 
+/**
+ * Represents a command to mark a task as done in the task list.
+ */
+
 public class MarkCommand extends Command {
     private final int markIndex;
+
+
+    /**
+     * Constructs a MarkCommand with the specified command arguments.
+     *
+     * @param command The command arguments. The second argument should be the task index.
+     * @throws UiaiException If the command arguments are invalid.
+     */
 
     public MarkCommand(String[] command) throws UiaiException {
         super();
@@ -21,6 +33,16 @@ public class MarkCommand extends Command {
             throw UiaiException.invalidTaskNumber(0);
         }
     }
+
+    /**
+     * Executes the mark task command by marking the specified task as done.
+     * Displays a message with the updated task.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param ui      The user interface for displaying messages.
+     * @param storage The storage handler for saving tasks.
+     * @throws UiaiException If the task index is invalid or the task is already marked as done.
+     */
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
