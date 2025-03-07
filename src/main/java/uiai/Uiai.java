@@ -13,12 +13,21 @@ import uiai.ui.Ui;
 import uiai.file.Storage;
 import uiai.task.TaskList;
 
+/**
+ * The main class for the Uiai application.
+ * The application provides a task manager where users can add, remove, mark, and unmark tasks.
+ * The tasks are saved to and loaded from a file.
+ */
 public class Uiai {
     private final Ui ui;
     private final Storage storage;
     private TaskList tasks;
     private static final String FILE_PATH = String.valueOf(Paths.get(System.getProperty("user.dir"), "uiai.txt"));
 
+    /**
+     * Constructs a Uiai object and initializes the UI, Storage, and TaskList.
+     * If an error occurs while loading tasks from the file, an empty task list is used.
+     */
     public Uiai() {
         ui = new Ui();
         storage = new Storage(FILE_PATH);
@@ -29,6 +38,11 @@ public class Uiai {
         }
     }
 
+    /**
+     * Starts the main loop of the Uiai application.
+     * Reads commands from the user, parses them, and executes the corresponding actions.
+     * The loop continues until an exit command is given.
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;
@@ -48,6 +62,11 @@ public class Uiai {
         }
     }
 
+    /**
+     * The main method that runs the Uiai application.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         new Uiai().run();
     }
