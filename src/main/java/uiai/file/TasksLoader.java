@@ -32,10 +32,10 @@ public class TasksLoader {
     public static ArrayList<Task> loadTasks(String filePath) throws IOException {
         File file = new File(filePath);
 
-        if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            file.createNewFile();
-        }
+//        if (!file.exists()) {
+//            file.getParentFile().mkdirs();
+//            file.createNewFile();
+//        }
 
         ArrayList<Task> tasks = new ArrayList<>();
 

@@ -58,7 +58,7 @@ public class UiaiException extends Exception {
      * @return A new {@link UiaiException} with an error message indicating incorrect deadline format.
      */
     public static UiaiException incorrectDeadlineFormat() {
-        return new UiaiException("Meow? Please input in this format: deadline [task] /by [date,time]");
+        return new UiaiException("Meow? Please input in this format: deadline [task] /by [dd/MM/yyyy HHmm]");
     }
 
     /**
@@ -85,6 +85,6 @@ public class UiaiException extends Exception {
      * @return A new {@link UiaiException} with an error message indicating incorrect event format.
      */
     public static UiaiException incorrectEventFormat() {
-        return new UiaiException("Meow? Please input in this format: event [task] /from [date,time] /to [date,time]");
+        return new UiaiException("Meow? Please input in this format: event [task] /from [dd/MM/yyyy HHmm] /to [dd/MM/yyyy HHmm]");
     }
 }
