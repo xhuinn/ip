@@ -6,11 +6,20 @@ import uiai.task.TaskList;
 import uiai.ui.Ui;
 import uiai.file.Storage;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a command to add an event task to the task list.
  */
 
 public class EventCommand extends Command {
+    /**
+     * The expected date-time format for input parsing (dd/MM/yyyy HHmm).
+     */
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 
     /**
      * Constructs an EventCommand with the given command arguments.
@@ -49,13 +58,25 @@ public class EventCommand extends Command {
             throw UiaiException.incorrectEventFormat();
         }
 
-        Event event = new Event(description[0].trim(), time[0].trim(), time[1].trim());
+        String eventFromTime = time[0].trim();
+        String eventToTime = time[1].trim();
 
-        tasks.addTask(event);
+        try {
+            LocalDateTime eventCorrectedFromTime = LocalDateTime.parse(eventFromTime, INPUT_FORMAT);
+            LocalDateTime eventCorrectedToTime = LocalDateTime.parse(eventToTime, INPUT_FORMAT);
 
-        ui.showMessage("Added this event!");
-        ui.showMessage("\t" + event.toString());
+            Event event = new Event(description[0].trim(), eventCorrectedFromTime, eventCorrectedToTime);
+            tasks.addTask(event);
 
-        ui.showMessage("You now have " + tasks.size() + " tasks.");
+            ui.showMessage("Added this event!");
+            ui.showMessage("\t" + event);
+            ui.showMessage("You now have " + tasks.size() + " tasks.");
+            storage.saveTasks(tasks.getTasks());
+
+        } catch (DateTimeParseException e) {
+            throw UiaiException.incorrectEventFormat();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

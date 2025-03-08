@@ -41,15 +41,15 @@ public class TasksSaver {
 
             if (task instanceof Todo) {
                 taskType = "T"; // Todo
-                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + ((Todo) task).description;
+                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + task.description;
                 writer.write(taskData + System.lineSeparator());
             } else if (task instanceof Deadline) {
                 taskType = "D"; //Deadline
-                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + ((Deadline) task).description + " | " + ((Deadline) task).getByDate();
+                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + task.description + " | " + ((Deadline) task).getByDate();
                 writer.write(taskData + System.lineSeparator());
             } else if (task instanceof Event) {
                 taskType = "E"; //Event
-                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + ((Event) task).description + " | " + ((Event) task).getFromDate() + " | " + ((Event) task).getToDate();
+                String taskData = taskType + " | " + (task.isDone() ? "1" : "0") + " | " + task.description + " | " + ((Event) task).getFromDate() + " | " + ((Event) task).getToDate();
                 writer.write(taskData + System.lineSeparator());
             }
         }

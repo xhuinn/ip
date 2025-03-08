@@ -32,11 +32,6 @@ public class TasksLoader {
     public static ArrayList<Task> loadTasks(String filePath) throws IOException {
         File file = new File(filePath);
 
-//        if (!file.exists()) {
-//            file.getParentFile().mkdirs();
-//            file.createNewFile();
-//        }
-
         ArrayList<Task> tasks = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(file)) {
@@ -71,7 +66,14 @@ public class TasksLoader {
 
                 case "E": // Event
                     if (taskData.length == 5) {
-                        task = new Event(taskData[2], taskData[3], taskData[4]);
+                        try {
+
+                            LocalDateTime deadlineFromDate = LocalDateTime.parse(taskData[3], DATE_FORMAT);
+                            LocalDateTime deadlineToDate = LocalDateTime.parse(taskData[4], DATE_FORMAT);
+                            task = new Event(taskData[2], deadlineFromDate, deadlineToDate);
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid deadline date format");
+                        }
                     }
                     break;
 

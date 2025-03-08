@@ -6,6 +6,7 @@ import uiai.task.TaskList;
 import uiai.ui.Ui;
 import uiai.file.Storage;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -61,8 +62,12 @@ public class DeadlineCommand extends Command {
             ui.showMessage("Added this deadline task!");
             ui.showMessage("\t" + deadlineTask);
             ui.showMessage("You now have " + tasks.size() + " tasks.");
+            storage.saveTasks(tasks.getTasks());
+
         } catch (DateTimeParseException e) {
             throw new UiaiException("Invalid date format! Please use dd/MM/yyyy HHmm (e.g., 02/12/2019 1800).");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
