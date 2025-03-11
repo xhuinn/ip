@@ -15,12 +15,21 @@ Uiai is a cat buddy you can use to organise your tasks.
 6. Refer to the Features below for details of each command.
 
 
+## Features
+> **Notes about the command format:**
+> - Words in `UPPER_CASE` are parameters to be supplied by the user.\
+> e.g. `todo TASK`, `TASK` is a parameter which can be used as `todo return book`.
+> - Items in square brackets are formats that should be followed.\
+>  e.g. `[dd/MM/yyyy HHmm]` should be input as `01/02/2024 1800`.
+> - Parameters must be in exact order.
+
+
 ## List tasks added: `list`
 Lists all the tasks added by the user.
 
 Format: `list`
 
-Expected output:
+Expected output:\
 ![img_9.png](images/img_9.png)
 
 ## End Uiai session: `bye`
@@ -28,7 +37,7 @@ End the session with Uiai and save the current tasks.
 
 Format: `bye`
 
-Expected output:
+Expected output:\
 ![img_10.png](images/img_10.png)
 
 ## Add Todo task: `todo`
@@ -40,7 +49,7 @@ Examples:
 - `todo read book`
 - `todo return keys`
 
-Expected output:
+Expected output:\
 ![img_2.png](images/img_2.png)
 
 ## Add Deadline task: `deadline`
@@ -53,7 +62,7 @@ Examples:
 - `deadline read assignment 1 /by 02/02/2014 1800`
 - `deadline complete homework 1 /by 05/12/2004 1900`
 
-Expected output:
+Expected output:\
 ![img_1.png](images/img_1.png)
 
 ## Add Event task: `event`
@@ -66,7 +75,7 @@ Examples:
 - `event formal dinner /from 11/03/2025 1800 /to 11/03/2025 2200`
 - `event carnival /from 12/01/2024 1800 /from 12/01/2024 2000`
 
-Expected output:
+Expected output:\
 ![img_4.png](images/img_4.png)
 
 ## Mark a task in the list: `mark`
@@ -78,23 +87,23 @@ Format: `mark INDEX`
 Examples: 
 - `mark 3`
 
-Expected output: 
+Expected output:\
 ![img_5.png](images/img_5.png)
 
 ## Unmark a task in the list: `unmark`
 Unmarks a task in the list, removing the X.
-- `INDEX` must be a number from the list that is currently marked.
+- `INDEX` must be a number of a task from the list that is currently marked.
 
 Format: `unmark INDEX`
 
 Examples: 
 - `unmark 3`
 
-Expected output:
+Expected output:\
 ![img_6.png](images/img_6.png)
 
 ## Delete a task in the list: `delete`
-Delete a task in the list specified by the `INDEX`.
+Deletes a task in the list specified by the `INDEX`.
 - `INDEX` must be a number from 1 to the total number of current tasks.
 
 Format: `delete INDEX`
@@ -102,16 +111,16 @@ Format: `delete INDEX`
 Examples: 
 - `delete 2`
 
-Expected output:
+Expected output:\
 ![img_7.png](images/img_7.png)
 
 ## Find tasks in the list that matches input: `find`
-Finds tasks in the list that matches the INPUT and lists them.
+Finds tasks in the list that matches the `INPUT` and lists them.
 
 Format: `find INPUT`
 
 Examples: 
 - `find book`
 
-Expected output:
+Expected output:\
 ![img_8.png](images/img_8.png)
