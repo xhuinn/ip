@@ -73,7 +73,7 @@ Format: `event TASK /from FROM /to TO`
 
 Examples: 
 - `event formal dinner /from 11/03/2025 1800 /to 11/03/2025 2200`
-- `event carnival /from 12/01/2024 1800 /from 12/01/2024 2000`
+- `event carnival /from 12/01/2024 1800 /to 12/01/2024 2000`
 
 Expected output:\
 ![img_4.png](images/img_4.png)

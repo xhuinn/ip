@@ -59,7 +59,7 @@ public class DeadlineCommand extends Command {
             Deadline deadlineTask = new Deadline(taskDescription, deadlineDateTime);
             tasks.addTask(deadlineTask);
 
-            ui.showMessage("Added this deadline task!");
+            ui.showMessage("Meow! I've added this deadline task!");
             ui.showMessage("\t" + deadlineTask);
             ui.showMessage("You now have " + tasks.size() + " tasks.");
             storage.saveTasks(tasks.getTasks());

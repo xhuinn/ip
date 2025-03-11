@@ -68,7 +68,7 @@ public class EventCommand extends Command {
             Event event = new Event(description[0].trim(), eventCorrectedFromTime, eventCorrectedToTime);
             tasks.addTask(event);
 
-            ui.showMessage("Added this event!");
+            ui.showMessage("Meow! I've added this event!");
             ui.showMessage("\t" + event);
             ui.showMessage("You now have " + tasks.size() + " tasks.");
             storage.saveTasks(tasks.getTasks());

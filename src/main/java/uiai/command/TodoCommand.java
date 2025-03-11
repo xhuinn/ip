@@ -43,7 +43,7 @@ public class TodoCommand extends Command {
         Todo newTodo = new Todo(description);
         tasks.addTask(newTodo);
 
-        ui.showMessage("Meow! I've added this task:");
+        ui.showMessage("Meow! I've added this todo task:");
         ui.showMessage("\t" + newTodo.toString());
         ui.showMessage("Now you have " + tasks.getTasks().size() + " tasks in your list.");
 
