@@ -2,7 +2,7 @@
 
 ![img.png](images/img.png)
 
-Uiai is a cat buddy you can use to organise your tasks.
+Uiai is a desktop cat helper app for organizing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Quick Start
 
