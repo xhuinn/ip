@@ -45,7 +45,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
         if (deleteTaskIndex < 0 || deleteTaskIndex >= tasks.getTasks().size()) {
-            throw UiaiException.invalidTaskNumber(tasks.getTasks().size());
+            throw UiaiException.incorrectFormat();
         }
 
         ui.showMessage("Meow! I've removed this task:");

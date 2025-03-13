@@ -105,13 +105,4 @@ public class UiaiException extends Exception {
     public static UiaiException failSaveTasks() {
         return new UiaiException("Failed to save tasks.");
     }
-
-    /**
-     * Creates an exception indicating that loading tasks from storage has failed.
-     *
-     * @return A new {@link UiaiException} with an error message indicating the failure to load tasks and starting with an empty task list.
-     */
-    public static UiaiException failLoadTasks() {
-        return new UiaiException("\tError loading tasks. Starting with an empty task list.");
-    }
 }
