@@ -87,4 +87,31 @@ public class UiaiException extends Exception {
     public static UiaiException incorrectEventFormat() {
         return new UiaiException("Meow? Please input in this format: event [task] /from [dd/MM/yyyy HHmm] /to [dd/MM/yyyy HHmm]");
     }
+
+    /**
+     * Creates an exception indicating that the date format provided is invalid.
+     *
+     * @return A new {@link UiaiException} with an error message specifying the correct date format.
+     */
+    public static UiaiException invalidDateFormat() {
+        return new UiaiException("Invalid date format! Please use dd/MM/yyyy HHmm (e.g., 02/12/2019 1800).");
+    }
+
+    /**
+     * Creates an exception indicating that saving tasks to storage has failed.
+     *
+     * @return A new {@link UiaiException} with an error message indicating the failure to save tasks.
+     */
+    public static UiaiException failSaveTasks() {
+        return new UiaiException("Failed to save tasks.");
+    }
+
+    /**
+     * Creates an exception indicating that loading tasks from storage has failed.
+     *
+     * @return A new {@link UiaiException} with an error message indicating the failure to load tasks and starting with an empty task list.
+     */
+    public static UiaiException failLoadTasks() {
+        return new UiaiException("\tError loading tasks. Starting with an empty task list.");
+    }
 }

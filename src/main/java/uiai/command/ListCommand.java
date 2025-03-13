@@ -8,13 +8,11 @@ import uiai.exception.UiaiException;
 /**
  * Represents a command to list all tasks in the task list.
  */
-
 public class ListCommand extends Command {
 
     /**
      * Constructs a ListCommand.
      */
-
     public ListCommand() {
         super();
     }
@@ -28,7 +26,6 @@ public class ListCommand extends Command {
      * @param storage The storage handler (not used in this command).
      * @throws UiaiException If an error occurs during execution.
      */
-
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
         if (tasks.getTasks().isEmpty()) {

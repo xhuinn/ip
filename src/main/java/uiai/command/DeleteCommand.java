@@ -26,7 +26,6 @@ public class DeleteCommand extends Command {
         if (commandArgs.length < 2) {
             throw UiaiException.invalidTaskNumber(0);
         }
-
         try {
             this.deleteTaskIndex = Integer.parseInt(commandArgs[1]) - 1;
         } catch (NumberFormatException e) {
@@ -58,7 +57,7 @@ public class DeleteCommand extends Command {
         try {
             storage.saveTasks(tasks.getTasks());
         } catch (Exception e) {
-            ui.showError("Failed to save tasks after deletion.");
+            throw UiaiException.failSaveTasks();
         }
     }
 }
