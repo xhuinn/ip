@@ -8,7 +8,6 @@ import uiai.exception.UiaiException;
 /**
  * Represents a command to mark a task as done in the task list.
  */
-
 public class MarkCommand extends Command {
     private final int markIndex;
 
@@ -19,7 +18,6 @@ public class MarkCommand extends Command {
      * @param command The command arguments. The second argument should be the task index.
      * @throws UiaiException If the command arguments are invalid.
      */
-
     public MarkCommand(String[] command) throws UiaiException {
         super();
 
@@ -43,7 +41,6 @@ public class MarkCommand extends Command {
      * @param storage The storage handler for saving tasks.
      * @throws UiaiException If the task index is invalid or the task is already marked as done.
      */
-
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
         if (markIndex < 0 || markIndex >= tasks.getTasks().size()) {
@@ -61,7 +58,7 @@ public class MarkCommand extends Command {
         try {
             storage.saveTasks(tasks.getTasks());
         } catch (Exception e) {
-            ui.showError("Failed to save tasks after marking.");
+            throw UiaiException.failSaveTasks();
         }
     }
 }

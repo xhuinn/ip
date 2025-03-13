@@ -59,7 +59,7 @@ public class UnmarkCommand extends Command {
         try {
             storage.saveTasks(tasks.getTasks());
         } catch (Exception e) {
-            ui.showError("Failed to save tasks after unmarking.");
+            throw UiaiException.failSaveTasks();
         }
     }
 }

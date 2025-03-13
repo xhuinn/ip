@@ -47,7 +47,6 @@ public class Parser {
             case "event" -> new EventCommand(command);
             case "delete" -> new DeleteCommand(command);
             case "find" -> new FindCommand(command);
-
             default -> throw UiaiException.incorrectFormat();
         };
     }

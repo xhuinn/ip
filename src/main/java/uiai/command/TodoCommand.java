@@ -50,7 +50,7 @@ public class TodoCommand extends Command {
         try {
             storage.saveTasks(tasks.getTasks());
         } catch (Exception e) {
-            ui.showError("Failed to save tasks after adding todo.");
+            throw UiaiException.failSaveTasks();
         }
     }
 }

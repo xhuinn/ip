@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import uiai.exception.UiaiException;
 import uiai.task.Todo;
 import uiai.task.Deadline;
 import uiai.task.Event;
@@ -47,13 +48,16 @@ public class TasksLoader {
                 Task task = null;
 
                 switch (taskData[0]) {
-                case "T": // Todo
+
+                // Todo
+                case "T":
                     if (taskData.length == 3) {
                         task = new Todo(taskData[2]);
                     }
                     break;
 
-                case "D": // Deadline
+                // Deadline
+                case "D":
                     if (taskData.length == 4) {
                         try {
                             LocalDateTime deadlineDate = LocalDateTime.parse(taskData[3], DATE_FORMAT);
@@ -64,7 +68,8 @@ public class TasksLoader {
                     }
                     break;
 
-                case "E": // Event
+                // Event
+                case "E":
                     if (taskData.length == 5) {
                         try {
 

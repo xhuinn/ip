@@ -65,7 +65,7 @@ public class DeadlineCommand extends Command {
             storage.saveTasks(tasks.getTasks());
 
         } catch (DateTimeParseException e) {
-            throw new UiaiException("Invalid date format! Please use dd/MM/yyyy HHmm (e.g., 02/12/2019 1800).");
+            throw UiaiException.invalidDateFormat();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
