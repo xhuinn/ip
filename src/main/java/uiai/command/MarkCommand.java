@@ -22,13 +22,13 @@ public class MarkCommand extends Command {
         super();
 
         if (command.length < 2) {
-            throw UiaiException.invalidTaskNumber(0);
+            throw UiaiException.incorrectMarkedFormat();
         }
 
         try {
             this.markIndex = Integer.parseInt(command[1]) - 1;
         } catch (NumberFormatException e) {
-            throw UiaiException.invalidTaskNumber(0);
+            throw UiaiException.incorrectMarkedFormat();
         }
     }
 

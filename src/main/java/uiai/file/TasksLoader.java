@@ -72,7 +72,6 @@ public class TasksLoader {
                 case "E":
                     if (taskData.length == 5) {
                         try {
-
                             LocalDateTime deadlineFromDate = LocalDateTime.parse(taskData[3], DATE_FORMAT);
                             LocalDateTime deadlineToDate = LocalDateTime.parse(taskData[4], DATE_FORMAT);
                             task = new Event(taskData[2], deadlineFromDate, deadlineToDate);

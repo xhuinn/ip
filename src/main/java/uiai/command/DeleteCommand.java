@@ -24,12 +24,12 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String[] commandArgs) throws UiaiException {
         super();
         if (commandArgs.length < 2) {
-            throw UiaiException.invalidTaskNumber(0);
+            throw UiaiException.incorrectDeleteFormat();
         }
         try {
             this.deleteTaskIndex = Integer.parseInt(commandArgs[1]) - 1;
         } catch (NumberFormatException e) {
-            throw UiaiException.invalidTaskNumber(0);
+            throw UiaiException.incorrectDeleteFormat();
         }
     }
 
@@ -45,7 +45,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UiaiException {
         if (deleteTaskIndex < 0 || deleteTaskIndex >= tasks.getTasks().size()) {
-            throw UiaiException.incorrectFormat();
+            throw UiaiException.invalidTaskNumber(tasks.getTasks().size());
         }
 
         ui.showMessage("Meow! I've removed this task:");

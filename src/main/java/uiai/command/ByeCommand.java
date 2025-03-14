@@ -14,8 +14,12 @@ public class ByeCommand extends Command {
     /**
      * Constructs a ByeCommand instance.
      */
-    public ByeCommand() {
+    public ByeCommand(String[] command) throws UiaiException {
         super();
+
+        if (command.length > 1) {
+            throw UiaiException.incorrectByeFormat();
+        }
     }
 
     /**

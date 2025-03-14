@@ -46,13 +46,13 @@ public class EventCommand extends Command {
             throw UiaiException.incorrectEventFormat();
         }
 
-        String[] description = commandArgs[1].split("/from", 2);
+        String[] description = commandArgs[1].split(" /from ", 2);
 
         if (description.length != 2 || description[0].isBlank() || description[1].isBlank()) {
             throw UiaiException.incorrectEventFormat();
         }
 
-        String[] time = description[1].split("/to", 2);
+        String[] time = description[1].split(" /to ", 2);
 
         if (time.length != 2 || time[0].isBlank() || time[1].isBlank()) {
             throw UiaiException.incorrectEventFormat();
@@ -74,7 +74,7 @@ public class EventCommand extends Command {
             storage.saveTasks(tasks.getTasks());
 
         } catch (DateTimeParseException e) {
-            throw UiaiException.incorrectEventFormat();
+            throw UiaiException.invalidDateFormat();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

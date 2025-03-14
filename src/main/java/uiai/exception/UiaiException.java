@@ -26,6 +26,33 @@ public class UiaiException extends Exception {
     }
 
     /**
+     * Creates an exception indicating that the format to unmark a task is incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating the format to unmark a task is incorrect and shows the correct format.
+     */
+    public static UiaiException incorrectUnmarkFormat() {
+        return new UiaiException("Meow? Please input in this format: unmark [index]");
+    }
+
+    /**
+     * Creates an exception indicating that the format to delete a task is incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating the format to delete a task is incorrect and shows the correct format.
+     */
+    public static UiaiException incorrectDeleteFormat() {
+        return new UiaiException("Meow? Please input in this format: delete [index]");
+    }
+
+    /**
+     * Creates an exception indicating that the format to mark a task in incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating the format to mark a task is incorrect and shows the correct format.
+     */
+    public static UiaiException incorrectMarkedFormat() {
+        return new UiaiException("Meow? Please input in this format: mark [index]");
+    }
+
+    /**
      * Creates an exception indicating that the user's input format is incorrect.
      *
      * @return A new {@link UiaiException} with an error message indicating incorrect format.
@@ -105,4 +132,24 @@ public class UiaiException extends Exception {
     public static UiaiException failSaveTasks() {
         return new UiaiException("Failed to save tasks.");
     }
+
+    /**
+     * Creates an exception indicating that command for listing tasks is incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating that the format to list tasks is incorrect.
+     */
+    public static UiaiException incorrectListFormat() {
+        return new UiaiException("Meow? Do you mean list?");
+    }
+
+    /**
+     * Creates an exception indicating that command to end Uiai session is incorrect.
+     *
+     * @return A new {@link UiaiException} with an error message indicating that the format to end Uiai session is incorrect.
+     */
+    public static UiaiException incorrectByeFormat() {
+        return new UiaiException("Meow? Do you mean bye?");
+    }
+
+
 }

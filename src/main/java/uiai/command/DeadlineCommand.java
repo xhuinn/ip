@@ -45,7 +45,7 @@ public class DeadlineCommand extends Command {
             throw UiaiException.incorrectDeadlineFormat();
         }
 
-        String[] description = commandArgs[1].split("/by", 2);
+        String[] description = commandArgs[1].split(" /by ", 2);
         if (description.length != 2 || description[0].isBlank() || description[1].isBlank()) {
             throw UiaiException.incorrectDeadlineFormat();
         }

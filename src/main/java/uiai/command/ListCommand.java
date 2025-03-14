@@ -13,8 +13,12 @@ public class ListCommand extends Command {
     /**
      * Constructs a ListCommand.
      */
-    public ListCommand() {
+    public ListCommand(String[] command) throws UiaiException {
         super();
+
+        if (command.length > 1) {
+            throw UiaiException.incorrectListFormat();
+        }
     }
 
     /**
